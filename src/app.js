@@ -5,12 +5,7 @@ let imagePreviewOverlay = new ImagePreview(document.querySelector('.preview img'
 let galleryManager = new GalleryManager();
 
 function onChange() {
-	if (!filesElm) { console.log('no files were found'); } else {
-		let file = filesElm.files[0];
-		if (SUPPORTED_FILES.includes(file.type) && file.size <= MAX_FILE_SIZE) {
-			imgFormElm.submit();
-		}
-	}
+	imgFormElm.submit();
 }
 
 xhrRequest('get-images.php', 'GET', '', { 'Content-type': 'application/x-www-form-urlencoded' }, galleryManager.loadImages, null, null);
