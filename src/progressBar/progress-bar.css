@@ -1,0 +1,26 @@
+#progress {
+  display: inline-flex;
+  margin-right: 10px;
+  position: relative;
+}
+
+.status-wrapper {
+  align-self: center;
+  display: inline-flex;
+  margin-right: 5px;
+}
+
+.arrow {
+  border: 5px solid #666;
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+  width: 300px;
+}
+
+.arrow-status {
+  background-color: #3aa6d0;
+  color: white; 
+  height: 100%;
+  text-align: right;
+}

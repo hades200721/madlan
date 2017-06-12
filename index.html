@@ -1,0 +1,73 @@
+<html>
+
+<head>
+	<title>Image uploader</title>
+	<link href="./styles/styles.css" rel="stylesheet" type="text/css">
+	<link href="./src/overlay/overlay.css" rel="stylesheet" type="text/css">
+	<link href="./src/progressBar/progress-bar.css" rel="stylesheet" type="text/css">
+	<link href="./src/gallery/gallery.css" rel="stylesheet" type="text/css">
+	<link href="./src/gallery/imageItem/image.css" rel="stylesheet" type="text/css">
+	<!--SCRIPTS GO HERE-->
+	<!--MANAGERS-->
+	<script src="./src/gallery/imageItem/image.js" defer></script>
+	<script src="./src/gallery/galleryManager.js" defer></script>
+	<script src="./src/progressBar/toolbarManager.js" defer></script>
+	<script src="./src/overlay/overlayManager.js" defer></script>
+	<!--GENERAL-->
+	<script src="./src/shared/varibales.js" defer></script>
+	<script src="./src/shared/helpers.js" defer></script>
+	<script src="./src/service.js" defer></script>
+	<!--MAIN-->
+	<script src="./src/app.js" defer></script>
+	<!--SPECS-->
+	<script src="./spec/overlaySpec.js" defer></script>
+</head>
+
+<body>
+
+	<!--HEADER-->
+	<div class="relative align-center header">
+		<div class="header-title">Images found: <span id="imagesCount">0</span></div>
+		<!--PROCESS BAR-->
+		<div id="progress">
+			<div class="status-wrapper"><strong>Status:</strong> <span class="title">idle</span></div>
+			<div class="arrow">
+				<div class="arrow-status">
+					<span id="precentDone">50</span><span>%</span>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<hr>
+	<!--GALLERY-->
+	<div id="gallery" class="product-users-wrapper">
+		<div class="container">
+			<div class="round-button-circle">
+				<form id="image-upload" action="server-services.php" method="POST" enctype="multipart/form-data" onsubmit="window.uploadFile(this)">
+					<label for="fileToUpload" class="c-pointer upload-button">Upload new image (browse)...</label>
+					<input style="display: none" type="file" id="fileToUpload" name="fileToUpload" onchange="onChange()" />
+				</form>
+			</div>
+		</div>
+	</div>
+	<!--OVERLAY-->
+	<div id="overlay" class="preview">
+		<div class="frame-holder">
+			<div class="box c-pointer" onclick="imagePreviewOverlay.hideOverlay()">
+				<svg xml:space="preserve" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+					<path class="path" d="M437.5,386.6L306.9,256l130.6-130.6c14.1-14.1,14.1-36.8,0-50.9c-14.1-14.1-36.8-14.1-50.9,0L256,205.1L125.4,74.5  
+      c-14.1-14.1-36.8-14.1-50.9,0c-14.1,14.1-14.1,36.8,0,50.9L205.1,256L74.5,386.6c-14.1,14.1-14.1,36.8,0,50.9  
+      c14.1,14.1,36.8,14.1,50.9,0L256,306.9l130.6,130.6c14.1,14.1,36.8,14.1,50.9,0C451.5,423.4,451.5,400.6,437.5,386.6z"></path>
+				</svg>
+			</div>
+			<div class="c-pointer" style="padding: 50px">
+				<img src="">
+			</div>
+		</div>
+	</div>
+
+	<iframe id="upload_target" name="upload_target" src="" style="width:0;height:0;border:0px solid #fff;"></iframe>
+</body>
+
+</html>

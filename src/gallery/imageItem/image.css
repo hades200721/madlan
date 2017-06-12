@@ -1,0 +1,54 @@
+
+.thumbnail-image {
+  display: inline-block;
+  margin: 5px;
+}
+
+.container > div {
+  border: 5px solid #444;
+  border-radius: 50%;
+  left: 50%;
+  overflow: hidden;
+  position: relative;
+  transform: translateX(-50%);
+}
+
+.round-button-circle {
+  width: 150px;
+  height: 150px;
+  background: #4679BD;
+}
+
+.round-button-circle:hover {
+	background:#30588e;
+}
+
+.upload-button {
+  display: block;
+  padding: 60px 0;
+  position: relative;
+  text-align: center;
+}
+
+.thumbnail-image img {
+  filter: grayscale(100%);
+  object-fit: cover;
+  width: 150px;
+  height: 150px;
+}
+
+.thumbnail-image:hover .image-background {
+  display: block;
+}
+
+.thumbnail-image:hover .image-background:after {
+  color: black;
+  font-weight: bold;
+  text-shadow: 2px 2px #eee;
+  content: ""attr(name)"";
+  position: absolute;  
+  text-align: center;
+  transform: translateY(-50%);
+  top: 50%;
+  width: 100%;
+}
