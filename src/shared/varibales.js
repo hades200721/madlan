@@ -6,5 +6,5 @@ let imagePath = './uploads/';
 
 // ELEMENTS
 let filesElm = document.getElementById('fileToUpload');
-let imgFormElm = document.getElementById('image-upload');
+let imgFormElm = document.getElementById('image-form');
 let counterElmWrapper = document.getElementById('imagesCount');

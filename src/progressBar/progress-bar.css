@@ -1,7 +1,6 @@
 #progress {
   display: inline-flex;
   margin-right: 10px;
-  position: relative;
 }
 
 .status-wrapper {
@@ -14,7 +13,6 @@
   border: 5px solid #666;
   border-radius: 2px;
   overflow: hidden;
-  position: relative;
   width: 300px;
 }
 

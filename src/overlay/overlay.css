@@ -1,5 +1,5 @@
 #overlay {
-  background: rgba(0,0,0, 0.8);
+  background: rgba(0,0,0, 0.5);
   bottom: 0;
   display: none;
   position: fixed;
@@ -14,7 +14,6 @@
 
 .box {
   height: 40px;
-  position: absolute;
   right: 0;
   top: 0;
   width: 40px;
@@ -24,8 +23,17 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  position: absolute;
   transform-origin: 50% 50%;
+}
+
+.img-holder {  
+  border: dashed white 2px;
+}
+
+.box::before {
+  content: '\f057';
+  font-family: awesomeFonts;
+  font-size: 40px;
 }
 
 svg:hover {

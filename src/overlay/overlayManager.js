@@ -8,6 +8,7 @@
 
     this.hideOverlay = function () {
         showElement(overlayElm, false);
+        this.setSource('');
     }
 }
 

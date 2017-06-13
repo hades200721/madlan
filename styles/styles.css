@@ -4,16 +4,32 @@ body {
 	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
 }
 
-.c-pointer {
-  cursor: pointer;
+@font-face {
+  font-family: awesomeFonts;
+  src: url(../assets/fontawesome.woff2);
 }
 
-.fill {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
+form {
+  margin: 0;   
+  padding: 4px 5px 3px;
+  font: 700 12px/1 'Open Sans', sans-serif;
+  border-radius: 3px;
+  box-shadow: inset 0 -1px 0 1px rgba(0, 0, 0, 0.1), inset 0 -10px 20px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+  background: #fff;
+  color: #222;
+}
+
+#image-form::before {
+  content: "\f093"; 
+  font-family: awesomeFonts;
+  text-decoration: inherit;
+  font-size: 20px;
+}
+
+.c-pointer {
+  cursor: pointer;
 }
 
 .centerize {
@@ -25,11 +41,16 @@ body {
   position: relative;
 }
 
+.absolute {
+  position: absolute;
+}
+
 .align-center {  
   text-align: center;
 }
 
 .header {
+  align-items: center;
   display: flex;
   flex-flow: row nowrap;
   height: 30px;
