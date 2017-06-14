@@ -20,5 +20,7 @@
   background-color: #3aa6d0;
   color: white; 
   height: 100%;
+  line-height: 2;
   text-align: right;
+  transform: translateX(-300px);
 }

@@ -5,6 +5,7 @@ var ProgessBarManager = function () {
         DOWNLOAD: 'downloading...',
         UPLOAD: 'uploading...'
     }
+    let value = 0;
     const progressBarElm = document.querySelector('#progress .arrow');
     const progressBarTitle = document.querySelector('#progress .title');
     const innerTextDone = document.getElementById('precentDone');
@@ -27,8 +28,8 @@ var ProgessBarManager = function () {
     // update the progress bar position and value
     // @val - value in pre-cent representing complete
     this.updateProgressBar = function (val) {
-        const newVal = val * progressBarWidth;
-        barElm.style.transform = 'translateX(' + (-progressBarWidth + newVal) + 'px)';
+        value = val;
+        barElm.style.transform = 'translateX(' + (-progressBarWidth + value * progressBarWidth) + 'px)';
         // update text
         innerTextDone.innerHTML = parseInt(val * 100);
     }
@@ -36,6 +37,7 @@ var ProgessBarManager = function () {
     let resetProgressBar = () => {
         barElm.style.transform = 'translateX(' + (-progressBarWidth) + 'px)';
         this.setProcessBarTitle(this.statusType.IDLE);
+        value = 0;
         innerTextDone.innerHTML = 0;
     }
 }

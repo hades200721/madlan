@@ -17,7 +17,12 @@ function ImageItemManager(index, fullPath) {
     imageElm.src = src;
 
     boxElm.addEventListener('click', function () {
-        xhrRequest('./server/remove-image.php?src='+fullPath+'&id='+id, 'POST', null, { 'Content-type': 'application/x-www-form-urlencoded' }, galleryManager.removeImage, null, null);
+        // xhrPromise('./server/remove-image.php?src='+fullPath+'&id='+id, 'POST', null, { 'Content-type': 'application/x-www-form-urlencoded' }, galleryManager.removeImage, null, null);
+        xhrPromise('POST', './server/remove-image.php?src=' + fullPath + '&id=' + id).then(function (result) {
+            galleryManager.removeImage(result);
+        }, function (err) {
+            console.log(err);
+        });
     })
 
     this.getFullPath = function () {

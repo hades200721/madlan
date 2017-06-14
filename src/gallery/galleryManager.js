@@ -1,56 +1,48 @@
 var GalleryManager = function () {
-    let imagesLoaded = 0;
-    let imagesFound = 0;
 
-    let galleryArray = [];
-    const galleryElm = document.getElementById('gallery');
-
-    this.loadImages = function (filesArray) {
-        processBarManager.setProcessBarTitle(processBarManager.statusType.DOWNLOAD);
-        processBarManager.showProcessBar();
-        filesArray = filesArray.split(',');
-        imagesFound = filesArray.length - 1;
-        for (let i = 0; i < imagesFound; i++) {
-            let fileFullName = filesArray[i];
-            galleryArray[i] = new ImageItemManager(i, fileFullName);
-            addImageToGallery(galleryArray[i]);
-        }
-    }
-
-    this.getGalleryArray = function() {
-        return galleryArray;
-    }
-
-    const addImageToGallery = function (imageItem) {
-        let newImg = imageItem.getImageElm();
-        newImg.onload = e => {
-            imagesLoaded++;
-            if (imagesLoaded === imagesFound) {
-                processBarManager.hideProcessBar();
-            } else {
-                processBarManager.updateProgressBar(imagesLoaded / imagesFound);
-            }
-            galleryElm.insertBefore(imageItem.getImageContainer(), galleryElm.firstChild);
-            counterElmWrapper.innerText = ++imagesCount;
-        }
-        initEvents(newImg);
-    }
-
-    const initEvents = function (imgElm) {
-        imgElm.addEventListener("click", function () {
-            imagePreviewOverlay.showOverlay();
-            imagePreviewOverlay.setSource(event.target.src);
-        })
-    }
+    this.imagesLoaded = 0;
+    this.imagesFound = 0;
+    this.galleryArray = [];
+    this.galleryElm = document.getElementById('gallery');
 
     this.removeImage = function (index) {
         if (isNaN(index)) { return true; }
         // removed from array
-        let imageItemToRemove = galleryManager.getGalleryArray().splice(parseInt(index), 1)[0]; // get imageitem object
+        let imageItemToRemove = galleryManager.galleryArray.splice(parseInt(index), 1)[0]; // get imageitem object
         // removed from dom
         let container = imageItemToRemove.getImageContainer();
-        galleryElm.removeChild(container);
+        this.galleryElm.removeChild(container);
     }
+}
 
+GalleryManager.prototype.loadImages = function (filesArray) {
+    processBarManager.setProcessBarTitle(processBarManager.statusType.DOWNLOAD);
+    processBarManager.showProcessBar();
+    filesArray = filesArray.split(',');
+    this.imagesFound = filesArray.length - 1;
+    for (let i = 0; i < this.imagesFound; i++) {
+        let fileFullName = filesArray[i];
+        let newImg = new ImageItemManager(i, fileFullName);
+        this.addImageToGallery(newImg);
+    }
+}
 
+GalleryManager.prototype.addImageToGallery = function (imageItem) {
+    this.galleryArray.push(imageItem);
+    let imgElm = imageItem.getImageElm();
+    imgElm.onload = e => {
+        this.imagesLoaded++;
+        if (this.imagesLoaded === this.imagesFound) {
+            processBarManager.hideProcessBar();
+        } else {
+            processBarManager.updateProgressBar(this.imagesLoaded / this.imagesFound);
+        }
+        this.galleryElm.appendChild(imgElm.parentElement.parentElement);
+        // this.galleryElm.appendChild(imgElm.getImageContainer());
+        counterElmWrapper.innerText = ++this.imagesCount;
+    }
+    imgElm.addEventListener("click", function () {
+        imagePreviewOverlay.showOverlay();
+        imagePreviewOverlay.setSource(event.target.src);
+    })
 }
