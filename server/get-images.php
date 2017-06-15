@@ -1,4 +1,5 @@
 <?php
+$target_dir = "./uploads/";
 $files = array();
 // $images=preg_grep('/\.(jpg|jpeg|png|gif)(?:[\?\#].*)?$/i', $files);
 if ($handle = opendir('../uploads/')) {
@@ -9,7 +10,7 @@ if ($handle = opendir('../uploads/')) {
 
     foreach($images as $image)
     {
-    echo $image.",";
+    echo $target_dir.$image.",";
     }
     closedir($handle);
 }
