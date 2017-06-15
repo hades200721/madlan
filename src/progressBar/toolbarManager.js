@@ -12,17 +12,18 @@ var ProgessBarManager = function () {
     const barElm = document.querySelector('.arrow-status');
     const progressBarWidth = barElm.offsetWidth;
 
-    this.setProcessBarTitle = function (value) {
-        progressBarTitle.innerText = value;
+    this.getValue = function() {
+        return value;
     }
 
-    this.showProcessBar = function () {
+    this.showProcessBar = function (value) {
+        progressBarTitle.innerText = value;
         showElement(progressBarElm, true);
     }
 
     this.hideProcessBar = function () {
         showElement(progressBarElm, false);
-        resetProgressBar();
+        this.resetProgressBar();
     }
 
     // update the progress bar position and value
@@ -34,9 +35,9 @@ var ProgessBarManager = function () {
         innerTextDone.innerHTML = parseInt(val * 100);
     }
 
-    let resetProgressBar = () => {
+    this.resetProgressBar = function() {
         barElm.style.transform = 'translateX(' + (-progressBarWidth) + 'px)';
-        this.setProcessBarTitle(this.statusType.IDLE);
+        progressBarTitle.innerText = this.statusType.IDLE;
         value = 0;
         innerTextDone.innerHTML = 0;
     }

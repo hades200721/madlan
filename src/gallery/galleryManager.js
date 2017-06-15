@@ -8,7 +8,7 @@ var GalleryManager = function () {
     this.removeImage = function (index) {
         if (isNaN(index)) { return true; }
         // removed from array
-        let imageItemToRemove = galleryManager.galleryArray.splice(parseInt(index), 1)[0]; // get imageitem object
+        let imageItemToRemove = this.galleryArray.splice(parseInt(index), 1)[0]; // get imageitem object
         // removed from dom
         let container = imageItemToRemove.getImageContainer();
         this.galleryElm.removeChild(container);
@@ -16,8 +16,7 @@ var GalleryManager = function () {
 }
 
 GalleryManager.prototype.loadImages = function (filesArray) {
-    processBarManager.setProcessBarTitle(processBarManager.statusType.DOWNLOAD);
-    processBarManager.showProcessBar();
+    processBarManager.showProcessBar(processBarManager.statusType.DOWNLOAD);
     filesArray = filesArray.split(',');
     this.imagesFound = filesArray.length - 1;
     for (let i = 0; i < this.imagesFound; i++) {
@@ -25,6 +24,7 @@ GalleryManager.prototype.loadImages = function (filesArray) {
         let newImg = new ImageItemManager(i, fileFullName);
         this.addImageToGallery(newImg);
     }
+    counterElmWrapper.innerText = this.imagesFound;
 }
 
 GalleryManager.prototype.addImageToGallery = function (imageItem) {
@@ -38,8 +38,6 @@ GalleryManager.prototype.addImageToGallery = function (imageItem) {
             processBarManager.updateProgressBar(this.imagesLoaded / this.imagesFound);
         }
         this.galleryElm.appendChild(imgElm.parentElement.parentElement);
-        // this.galleryElm.appendChild(imgElm.getImageContainer());
-        counterElmWrapper.innerText = ++this.imagesCount;
     }
     imgElm.addEventListener("click", function () {
         imagePreviewOverlay.showOverlay();

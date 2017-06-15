@@ -7,7 +7,11 @@ describe('progress bar suite case', function () {
         expect(fakeprogress).not.toBe(null);
     })
 
-    // it('should be able to create our new progress', function () {
-    //     expect(fakeprogress.updateProgressBar(5)).not.toBe(null);
-    // })
+    it('updating process bar value', function () {
+        fakeprogress.updateProgressBar(5);
+        expect(fakeprogress.getValue()).toBe(5);
+        expect(fakeprogress.getValue()).not.toBe(4);        
+        fakeprogress.resetProgressBar();
+        expect(fakeprogress.getValue()).toBe(0); 
+    })
 });

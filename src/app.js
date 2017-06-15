@@ -19,18 +19,17 @@ xhrPromise('GET','./server/get-images.php').then(function (result) {
 	console.log(err); // Error: "It broke"
 });
 
-function uploadFile() {
-	alert('dgsdg');
-	if (!filesElm) { console.log('no files were found'); return false; } else {
-		let file = filesElm.files[0];
-		if (SUPPORTED_FILES.includes(file.type) && file.size <= MAX_FILE_SIZE) {
-			xhrRequest('../server-services.php', 'POST', file, { 'X-FILENAME': file.name }, null,
-				function (e) { processBarManager.updateProgressBar(e.loaded / e.total); },
-				function (e) { console.warn('error occures'); },
-			);
-			processBarManager.setProcessBarTitle(processBarManager.statusType.UPLOAD);
-			processBarManager.showProcessBar();
-		}
-		return true;
-	}
-}
+// function uploadFile() {
+// 	debugger;
+// 	if (!filesElm) { console.log('no files were found'); return false; } else {
+// 		let file = filesElm.files[0];
+// 		if (SUPPORTED_FILES.includes(file.type) && file.size <= MAX_FILE_SIZE) {
+// 			xhrRequest('../server-services.php', 'POST', file, { 'X-FILENAME': file.name }, null,
+// 				function (e) { processBarManager.updateProgressBar(e.loaded / e.total); },
+// 				function (e) { console.warn('error occures'); },
+// 			);
+// 			processBarManager.showProcessBar(processBarManager.statusType.UPLOAD);
+// 		}
+// 		return true;
+// 	}
+// }
