@@ -18,14 +18,15 @@
 #gallery {
   max-width: 1000px;
   margin: 0 auto;
+  padding: 10px 0;
 }
 
 .image-background {
   display: none;
-  width: 100%;
   height: 100%;
   opacity: 0.5;  
   pointer-events: none;
   position: absolute;
   top: 0;
+  width: 100%;
 }

@@ -1,6 +1,5 @@
 function ImageItemManager(index, fullPath) {
-    let id = index;
-    let name = fullPath.split('/')[1];
+    let name = fullPath.split('/')[fullPath.split('/').length-1];
     let elmContainer = createElement('div', 'relative container');
     let boxElm = createElement('a', 'c-pointer box');
     let thumbnailImageElm = createElement('div', 'thumbnail-image');
@@ -16,17 +15,12 @@ function ImageItemManager(index, fullPath) {
     imageElm.src = fullPath;
 
     boxElm.addEventListener('click', function () {
-        // xhrPromise('./server/remove-image.php?src='+fullPath+'&id='+id, 'POST', null, { 'Content-type': 'application/x-www-form-urlencoded' }, galleryManager.removeImage, null, null);
-        xhrPromise('POST', './server/remove-image.php?src=' + fullPath + '&id=' + id).then(function (result) {
+        xhrPromise('POST', './server/remove-image.php?src=' + fullPath + '&id=' + index).then(function (result) {
             galleryManager.removeImage(result);
         }, function (err) {
             console.log(err);
         });
     })
-
-    this.getFullPath = function () {
-        return src;
-    }
 
     this.getImageContainer = function () {
         return elmContainer;
