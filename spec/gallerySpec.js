@@ -5,11 +5,11 @@ var fakeGallery;
 function testAsync(done) {
     // Wait two seconds, then set the flag to true
     fakeGallery = new GalleryManager();
-    var imagesArray = `./assets/testing/1.jpg,./assets/testing/2.gif,./assets/testing/3.jpg,./assets/testing/4.jpg,`;
+    var imagesArray = `./assets/testing/1.jpg,./assets/testing/2.gif,./assets/testing/3.jpg,./assets/testing/4.jpg`;
     fakeGallery.loadImages(imagesArray);
     setTimeout(function () {
         done();
-    }, 2000);
+    }, 500);
 }
 
 describe('gallery suite case', function () {

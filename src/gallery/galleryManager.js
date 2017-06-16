@@ -18,7 +18,7 @@ var GalleryManager = function () {
 GalleryManager.prototype.loadImages = function (filesArray) {
     processBarManager.showProcessBar(processBarManager.statusType.DOWNLOAD);
     filesArray = filesArray.split(',');
-    this.imagesFound = filesArray.length - 1;
+    this.imagesFound = filesArray.length;
     for (let i = 0; i < this.imagesFound; i++) {
         let fileFullName = filesArray[i];
         let newImg = new ImageItemManager(i, fileFullName);
